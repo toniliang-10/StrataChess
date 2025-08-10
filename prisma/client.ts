@@ -1,5 +1,5 @@
 //lib/prisma.ts
-import { PrismaClient } from "@prisma/client";  //Added scripts in package.json
+import { PrismaClient } from "@/app/generated/prisma";  //Added scripts in package.json
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 

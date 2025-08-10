@@ -21,8 +21,10 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   username  String   @unique
+  hashedPassword  String?
   name      String
   createdAt DateTime @default(now())
   isActive  Boolean  @default(false)
   phone     String?  @default("N/A")
 }
+

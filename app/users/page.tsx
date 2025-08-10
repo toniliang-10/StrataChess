@@ -20,7 +20,6 @@ const Page = async () => {
                 </div>
                 <br />
             </div>
-
         ))}
     </div>
   )
