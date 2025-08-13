@@ -39,9 +39,9 @@ const NavBar = () => {
             </Link>
 
             {/* Quick Play Button - always visible */}
-            <button className="px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 hover:from-orange-500 hover:to-amber-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-105">
+            <Link href="/gameVsStockfish" className="px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 hover:from-orange-500 hover:to-amber-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-105">
               Quick Play ⚡
-            </button>
+            </Link>
           </div>
 
           {/* Auth Section */}
@@ -54,12 +54,20 @@ const NavBar = () => {
             )}
             
             {status === 'unauthenticated' && (
-              <Link 
-                href="/api/auth/signin" 
-                className="px-6 py-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Sign In
-              </Link>
+              <>
+                <Link 
+                  href="/register" 
+                  className="px-6 py-2 border-2 border-orange-400 text-orange-600 font-semibold rounded-xl hover:bg-gradient-to-r hover:from-orange-500 hover:to-amber-500 hover:text-white hover:border-transparent transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                >
+                  Register
+                </Link>
+                <Link 
+                  href="/api/auth/signin" 
+                  className="px-6 py-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Sign In
+                </Link>
+              </>
             )}
             
             {status === "authenticated" && (
@@ -81,7 +89,7 @@ const NavBar = () => {
         <div className="md:hidden border-t border-orange-100 py-2 hidden">
           <Link href="/" className="block px-4 py-2 text-gray-700 hover:bg-orange-50 rounded-lg">Home</Link>
           <Link href="/users" className="block px-4 py-2 text-gray-700 hover:bg-orange-50 rounded-lg">Players</Link>
-          <button className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 rounded-lg">Quick Play ⚡</button>
+          <Link href="/gameVsStockfish" className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-50 rounded-lg">Quick Play ⚡</Link>
         </div>
       </div>
     </nav>
