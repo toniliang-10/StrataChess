@@ -1,5 +1,6 @@
 import { Span } from "next/dist/trace";
 import Image from "next/image";
+import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 
@@ -26,7 +27,7 @@ export default async function Home() {
                 {session && <span className="block text-4xl mt-2 text-gray-700">Hello, {session.user!.name}!</span>}
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Master the game of kings with our interactive chess platform. Play, learn, and improve your skills.
+                Challenge the world's strongest chess engine. Test your skills against Stockfish and join the elite ranks of players.
               </p>
             </div>
 
@@ -58,57 +59,62 @@ export default async function Home() {
 
             {/* Action Cards */}
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {/* Play Card */}
+              {/* Challenge Stockfish Card */}
               <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">⚔️</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Play Chess</h3>
-                <p className="text-gray-600 mb-6">Challenge players from around the world or practice against AI opponents.</p>
-                <button className="w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Start Playing
-                </button>
+                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🤖</div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">Challenge Stockfish</h3>
+                <p className="text-gray-600 mb-6">Test your skills against the world's strongest chess engine. Can you defeat the machine?</p>
+                <Link href="/gameVsStockfish" className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center">
+                  Start New Game
+                </Link>
               </div>
 
-              {/* Learn Card */}
+              {/* Player Statistics Card */}
               <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📚</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Learn & Improve</h3>
-                <p className="text-gray-600 mb-6">Master chess strategies with our comprehensive tutorials and puzzles.</p>
-                <button className="w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Start Learning
-                </button>
+                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">Player Statistics</h3>
+                <p className="text-gray-600 mb-6">View top performers against Stockfish, wins, draws, and the best records worldwide.</p>
+                <Link href="/data" className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center">
+                  View Leaderboards
+                </Link>
               </div>
 
-              {/* Analyze Card */}
+              {/* Stockfish Documentation Card */}
               <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🔍</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Game Analysis</h3>
-                <p className="text-gray-600 mb-6">Review your games with powerful analysis tools and improve your play.</p>
-                <button className="w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Analyze Games
-                </button>
+                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📖</div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-3">About Stockfish</h3>
+                <p className="text-gray-600 mb-6">Learn about the open-source chess engine that's revolutionizing computer chess.</p>
+                <a 
+                  href="https://official-stockfish.github.io/docs/stockfish-wiki/Home.html" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+                >
+                  Read Documentation
+                </a>
               </div>
             </div>
 
-            {/* Stats Section (if user is logged in) */}
+            {/* Stockfish Challenge Stats Section (if user is logged in) */}
             {session && (
               <div className="mt-16 bg-white/50 backdrop-blur-sm rounded-3xl p-8 border border-orange-200">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Your Chess Journey</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">Your Performance vs Stockfish</h2>
                 <div className="grid md:grid-cols-4 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">1,247</div>
-                    <div className="text-gray-600">Games Played</div>
+                    <div className="text-3xl font-bold text-blue-600">15</div>
+                    <div className="text-gray-600">Games vs Stockfish</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">856</div>
-                    <div className="text-gray-600">Puzzles Solved</div>
+                    <div className="text-3xl font-bold text-green-600">2</div>
+                    <div className="text-gray-600">Victories</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">1,532</div>
-                    <div className="text-gray-600">Current Rating</div>
+                    <div className="text-3xl font-bold text-yellow-600">4</div>
+                    <div className="text-gray-600">Draws</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">Gold</div>
-                    <div className="text-gray-600">League</div>
+                    <div className="text-3xl font-bold text-orange-600">#1,247</div>
+                    <div className="text-gray-600">Global Rank</div>
                   </div>
                 </div>
               </div>

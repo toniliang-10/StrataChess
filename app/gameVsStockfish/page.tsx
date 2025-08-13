@@ -191,7 +191,7 @@ const GameVsStockfish = () => {
   const boardMatrix = useMemo(() => chess.board(), [boardKey]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-600 via-orange-500 to-amber-500 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-300 via-orange-00 to-amber-500 flex items-center justify-center p-4">
       <div className="relative">
         {/* Game Over Modal */}
         {gameResult && (
