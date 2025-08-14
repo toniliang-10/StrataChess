@@ -26,5 +26,19 @@ model User {
   createdAt DateTime @default(now())
   isActive  Boolean  @default(false)
   phone     String?  @default("N/A")
+
+  winsVsStockfish  Int   @default(0)
+  drawsVsStockfish Int  @default(0)
+}
+
+
+model StockfishStats {
+  id               Int   @id @default(autoincrement())
+
+  // players who beat Stockfish: { "userId": winsCount }
+  beatenByPlayers  Json  @db.Json
+
+  // players who drew with Stockfish: { "userId": drawCount }
+  drawnByPlayers   Json  @db.Json
 }
 

@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     const timeout = setTimeout(() => controller.abort(), 15000);
 
     try {
-      // Try chess-api.com which appears to be more current
+      // Try chess-api.com which appears to be the more current stockfish api
       const response = await fetch("https://chess-api.com/v1", {
         method: "POST",
         headers: { 

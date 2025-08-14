@@ -2,6 +2,7 @@
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Chess, Square } from 'chess.js';
+import { useSession } from 'next-auth/react';
 
 type EngineReply =
   | { ok: true; engine: any; fen: string; depth: number }
@@ -23,6 +24,8 @@ const GameVsStockfish = () => {
   const [isThinking, setIsThinking] = useState(false);
   const [depth, setDepth] = useState<number>(12);
   const [gameResult, setGameResult] = useState<{ winner: 'white' | 'black' | 'draw'; reason: string } | null>(null);
+
+  const { data: session, status } = useSession();
 
   const chess = gameRef.current;
   const isWhitesTurn = chess.turn() === 'w';
@@ -192,7 +195,9 @@ const GameVsStockfish = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-300 via-orange-00 to-amber-500 flex items-center justify-center p-4">
+
       <div className="relative">
+        {(status != 'authenticated') && <div className='text-black mb-5'>Note: Log in to save your data Against Stockfish </div>}
         {/* Game Over Modal */}
         {gameResult && (
           <div className="absolute inset-0 z-30 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-2xl">

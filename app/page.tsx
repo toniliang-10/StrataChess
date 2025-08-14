@@ -74,7 +74,7 @@ export default async function Home() {
                 <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-3">Player Statistics</h3>
                 <p className="text-gray-600 mb-6">View top performers against Stockfish, wins, draws, and the best records worldwide.</p>
-                <Link href="/data" className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center">
+                <Link href="/leaderboards" className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center">
                   View Leaderboards
                 </Link>
               </div>
@@ -99,11 +99,7 @@ export default async function Home() {
             {session && (
               <div className="mt-16 bg-white/50 backdrop-blur-sm rounded-3xl p-8 border border-orange-200">
                 <h2 className="text-3xl font-bold text-gray-800 mb-6">Your Performance vs Stockfish</h2>
-                <div className="grid md:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600">15</div>
-                    <div className="text-gray-600">Games vs Stockfish</div>
-                  </div>
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-green-600">2</div>
                     <div className="text-gray-600">Victories</div>
@@ -111,10 +107,6 @@ export default async function Home() {
                   <div className="text-center">
                     <div className="text-3xl font-bold text-yellow-600">4</div>
                     <div className="text-gray-600">Draws</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600">#1,247</div>
-                    <div className="text-gray-600">Global Rank</div>
                   </div>
                 </div>
               </div>
