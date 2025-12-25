@@ -204,7 +204,7 @@ const GameVsStockfish = () => {
         {/* Note for unauthenticated users */}
         {(status !== 'authenticated') && (
           <div className="text-black mb-5 max-w-lg text-center px-4">
-            Note: Log in to save your data Against Stockfish. We are currently developing performance tracking and analysis features.
+            Note: We are currently developing performance tracking and analysis features.
           </div>
         )}
 
