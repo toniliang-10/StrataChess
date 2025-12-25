@@ -8,11 +8,6 @@ type EngineReply =
   | { ok: true; engine: any; fen: string; depth: number }
   | { ok: false; error: string };
 
-const PIECE: Record<string, string> = {
-  p: '♟', r: '♜', n: '♞', b: '♝', q: '♛', k: '♚',
-  P: '♙', R: '♖', N: '♘', B: '♗', Q: '♕', K: '♔',
-};
-
 const FILES = ['a','b','c','d','e','f','g','h'];
 const RANKS = ['8','7','6','5','4','3','2','1'];
 
@@ -194,11 +189,17 @@ const GameVsStockfish = () => {
   const boardMatrix = useMemo(() => chess.board(), [boardKey]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-300 via-orange-00 to-amber-500 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-300 via-orange-100 to-amber-500 flex items-center justify-center p-4">
+      <div className="flex flex-col items-center">
+        {/* Note for unauthenticated users */}
+        {(status !== 'authenticated') && (
+          <div className="text-black mb-5 max-w-lg text-center px-4">
+            Note: Log in to save your data Against Stockfish. We are currently developing performance tracking and analysis features.
+          </div>
+        )}
 
-      <div className="relative">
-        {(status != 'authenticated') && <div className='text-black mb-5'>Note: Log in to save your data Against Stockfish </div>}
-        {/* Game Over Modal */}
+        <div className="relative">
+          {/* Game Over Modal */}
         {gameResult && (
           <div className="absolute inset-0 z-30 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-2xl">
             <div className="bg-white/95 p-8 rounded-2xl shadow-2xl border border-orange-200 max-w-md mx-4 text-center">
@@ -291,25 +292,14 @@ const GameVsStockfish = () => {
                     className={squareClasses}
                     aria-label={sq}
                   >
-                    {/* Piece with solid white coloring */}
+                    {/* Chess piece SVG */}
                     {cell && (
-                      <span 
-                        className={`
-                          text-3xl md:text-4xl select-none z-10 relative
-                          transition-all duration-500 ease-in-out
-                          ${cell.color === 'w' 
-                            ? 'text-white drop-shadow-[2px_2px_4px_rgba(0,0,0,0.9)] filter brightness-110 saturate-0' 
-                            : 'text-gray-900 drop-shadow-[1px_1px_2px_rgba(255,255,255,0.5)]'
-                          }
-                          hover:scale-110
-                        `}
-                        style={cell.color === 'w' ? { 
-                          color: '#ffffff',
-                          textShadow: '2px 2px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.5)'
-                        } : {}}
-                      >
-                        {PIECE[cell.color === 'w' ? cell.type.toUpperCase() : cell.type]}
-                      </span>
+                      <img 
+                        src={`/pieces/${cell.color}${cell.type.toUpperCase()}.svg`}
+                        alt={`${cell.color === 'w' ? 'White' : 'Black'} ${cell.type}`}
+                        className="w-10 h-10 md:w-12 md:h-12 select-none z-10 relative transition-transform duration-200 hover:scale-110"
+                        draggable={false}
+                      />
                     )}
 
                     {/* Coordinate labels */}
@@ -361,6 +351,7 @@ const GameVsStockfish = () => {
           >
             Resign
           </button>
+        </div>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ export default async function Home() {
                 {session && <span className="block text-4xl mt-2 text-gray-700">Hello, {session.user!.name}!</span>}
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Challenge the world's strongest chess engine. Test your skills against Stockfish and join the elite ranks of players.
+                Challenge the world's strongest chess engine. Test your skills against Stockfish and become the first player to beat it!
               </p>
             </div>
 
