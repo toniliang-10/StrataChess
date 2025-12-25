@@ -87,25 +87,35 @@ const GameVsStockfish = () => {
   
     // 2) Otherwise, if a piece is selected, try to move it
     if (selected) {
-      const move = chess.move({ from: selected, to: sq, promotion: 'q' as const });
-      if (move) {
+      // Check if clicked square is a legal target
+      if (!legalTargets.has(sq)) {
+        // Clicked an illegal square - deselect
         setSelected(null);
         setLegalTargets(new Set());
-        refreshBoard();
-        if (!chess.isGameOver()) {
-          setTimeout(() => { engineMove(); }, 100);
-        }
         return;
       }
-  
-      // ⬇️ Illegal click: clear selection and targets
-      setSelected(null);
-      setLegalTargets(new Set());
+
+      // It's a legal target, attempt the move
+      try {
+        const move = chess.move({ from: selected, to: sq, promotion: 'q' as const });
+        if (move) {
+          setSelected(null);
+          setLegalTargets(new Set());
+          refreshBoard();
+          if (!chess.isGameOver()) {
+            setTimeout(() => { engineMove(); }, 100);
+          }
+        }
+      } catch {
+        // Move failed for some reason, deselect
+        setSelected(null);
+        setLegalTargets(new Set());
+      }
       return;
     }
   
     // Clicked empty/opponent square with nothing selected → no-op
-  }, [selected, isThinking, isWhitesTurn, refreshBoard, chess]);
+  }, [selected, legalTargets, isThinking, isWhitesTurn, refreshBoard, chess]);
 
   async function engineMove() {
     try {
