@@ -274,7 +274,7 @@ const GameVsStockfish = () => {
                 }
 
                 if (isSelected) {
-                  squareClasses += ' ring-3 ring-gray-800 ring-opacity-90 shadow-lg scale-110 bg-gray-300/60';
+                  squareClasses += ' ring-3 ring-gray-800 ring-opacity-90 shadow-lg scale-110 bg-gray-300/60 z-10';
                 }
 
                 if (isTarget) {
