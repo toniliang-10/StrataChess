@@ -58,32 +58,22 @@ export default async function Home() {
             </div>
 
             {/* Action Cards */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Challenge Stockfish Card */}
-              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
+              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300 flex flex-col">
                 <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🤖</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-3">Challenge Stockfish</h3>
-                <p className="text-gray-600 mb-6">Test your skills against the world's strongest chess engine. Can you defeat the machine?</p>
+                <p className="text-gray-600 mb-6 flex-grow">Test your skills against the world's strongest chess engine. Can you defeat the machine?</p>
                 <Link href="/gameVsStockfish" className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center">
                   Start New Game
                 </Link>
               </div>
 
-              {/* Player Statistics Card */}
-              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📊</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">Player Statistics</h3>
-                <p className="text-gray-600 mb-6">View top performers against Stockfish, wins, draws, and the best records worldwide.</p>
-                <Link href="/leaderboards" className="block w-full py-3 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center">
-                  View Leaderboards
-                </Link>
-              </div>
-
               {/* Stockfish Documentation Card */}
-              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300">
+              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300 flex flex-col">
                 <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📖</div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-3">About Stockfish</h3>
-                <p className="text-gray-600 mb-6">Learn about the open-source chess engine that's revolutionizing computer chess.</p>
+                <p className="text-gray-600 mb-6 flex-grow">Learn about the open-source chess engine that's revolutionizing computer chess.</p>
                 <a 
                   href="https://official-stockfish.github.io/docs/stockfish-wiki/Home.html" 
                   target="_blank" 

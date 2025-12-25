@@ -29,14 +29,6 @@ const NavBar = () => {
             >
               Home
             </Link>
-            
-            <Link 
-              href="/users" 
-              className="px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gradient-to-r hover:from-orange-500
-               hover:to-amber-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-105"
-            >
-              Players
-            </Link>
 
             {/* Quick Play Button - always visible */}
             <Link href="/gameVsStockfish" className="px-4 py-2 rounded-lg font-medium bg-gradient-to-r from-orange-100 to-amber-100 text-orange-700 hover:from-orange-500 hover:to-amber-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:scale-105">
