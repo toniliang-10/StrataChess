@@ -1,7 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Chess } from "chess.js";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+interface StockfishAPIResponse {
+  move?: string;
+  bestmove?: string;
+  uci?: string;
+  best?: string;
+  text?: string;
+  eval?: number;
+  evaluation?: number;
+  mate?: number | null;
+  continuation?: unknown[];
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -63,7 +76,7 @@ export async function POST(req: NextRequest) {
       const responseText = await response.text();
       console.log('Raw response:', responseText);
 
-      let data: any;
+      let data: StockfishAPIResponse;
       try {
         data = JSON.parse(responseText);
       } catch (parseError) {
@@ -115,7 +128,7 @@ export async function POST(req: NextRequest) {
       console.log('Returning result:', result);
       return NextResponse.json(result);
 
-    } catch (fetchError: any) {
+    } catch (fetchError) {
       clearTimeout(timeout);
       
       console.error('Fetch error, using fallback:', fetchError);
@@ -135,9 +148,9 @@ export async function POST(req: NextRequest) {
       });
     }
 
-  } catch (err: any) {
+  } catch (err) {
     console.error('API route error:', err);
-    const msg = err?.message || "Unknown error";
+    const msg = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ ok: false, error: msg }, { status: 500 });
   }
 }
@@ -146,8 +159,6 @@ export async function POST(req: NextRequest) {
 // This is just to keep the game playable while we sort out the API
 function generateRandomLegalMove(fen: string): string {
   try {
-    // Import chess.js dynamically since this is server-side
-    const { Chess } = require('chess.js');
     const chess = new Chess(fen);
     const moves = chess.moves({ verbose: true });
     

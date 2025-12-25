@@ -5,7 +5,7 @@ import { prisma } from "@/prisma/client"
 //request: what youre passing to it
 // { params } : URL passed to it
 
-export async function GET(request: NextRequest, {params}: { params : { id: string }}){
+export async function GET(request: NextRequest, {params}: { params : Promise<{ id: string }>}){
 
     const { id } = await params; //required as of NextJS 15
     const user = await prisma.user.findUnique({
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest){
 }
 
 export async function PUT(request: NextRequest, 
-    { params } : { params: { id: string}}){
+    { params } : { params: Promise<{ id: string }>}){
 
         const { id } = await params;
 
@@ -81,7 +81,7 @@ export async function PUT(request: NextRequest,
 }
 
 export  async function DELETE(request: NextRequest, 
-    { params }: {params: { id: string}}){
+    { params }: {params: Promise<{ id: string }>}){
         //Fetch User from DB
         const { id } = await params;
 

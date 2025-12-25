@@ -4,8 +4,14 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Chess, Square } from 'chess.js';
 import { useSession } from 'next-auth/react';
 
+interface EngineData {
+  bestmove: string;
+  evaluation: number;
+  mate: number | null;
+}
+
 type EngineReply =
-  | { ok: true; engine: any; fen: string; depth: number }
+  | { ok: true; engine: EngineData; fen: string; depth: number }
   | { ok: false; error: string };
 
 const FILES = ['a','b','c','d','e','f','g','h'];
@@ -17,10 +23,10 @@ const GameVsStockfish = () => {
   const [selected, setSelected] = useState<Square | null>(null);
   const [legalTargets, setLegalTargets] = useState<Set<string>>(new Set());
   const [isThinking, setIsThinking] = useState(false);
-  const [depth, setDepth] = useState<number>(12);
+  const [depth] = useState<number>(12);
   const [gameResult, setGameResult] = useState<{ winner: 'white' | 'black' | 'draw'; reason: string } | null>(null);
 
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   const chess = gameRef.current;
   const isWhitesTurn = chess.turn() === 'w';
@@ -157,7 +163,7 @@ const GameVsStockfish = () => {
       console.log('Attempting move:', { from, to, promotion });
 
       // Build move object
-      const moveObj: any = { from, to };
+      const moveObj: { from: Square; to: Square; promotion?: string } = { from, to };
       if (promotion && ['q', 'r', 'b', 'n'].includes(promotion)) {
         moveObj.promotion = promotion;
       }

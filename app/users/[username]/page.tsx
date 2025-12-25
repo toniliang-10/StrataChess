@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface Props {
-    params: { username: string}
+    params: Promise<{ username: string}>
 }
 
 interface User {
@@ -11,7 +11,8 @@ interface User {
     email: string;
 }
 
-const Page = async( { params: { username } } : Props ) => {
+const Page = async( { params } : Props ) => {
+    const { username } = await params;
     const res = await fetch('https://jsonplaceholder.typicode.com/users')
     const users = await res.json()
 
